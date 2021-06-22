@@ -45,7 +45,6 @@ jdcal==1.4.1
 jedi==0.18.0
 Jinja2==3.0.1
 Js2Py==0.71
-
 mhyt==3.5.5
 moviepy==1.0.3
 mysql-connector==2.2.9
@@ -75,7 +74,6 @@ pyinstaller-hooks-contrib==2021.1
 pyjsparser==2.7.1
 PyJWT==1.7.1
 pyparsing==2.4.7
-pypiwin32==223
 PyQt5==5.15.4
 PyQt5-Qt5==5.15.2
 PyQt5-sip==12.9.0
