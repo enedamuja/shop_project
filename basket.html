@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <title>Basket</title>
+  </head>
+  <style>
+    .div-2 {
+      padding-top: 20px;
+    }
+
+    .button-to-login{
+      
+      float: right;
+      margin-left: 20px;
+      margin-right: 20px;
+      font-size: 20px;
+    }
+    .button-to-basket {
+      float: right;
+      font-size: 20px;
+      margin-left: 20px;
+    }
+
+
+    .basketlabels{
+      width: 900px;
+      height: 50px;
+      background-color: #ABE4C5;
+      outline-style: outset;
+      margin-top: 60px;
+      font-size: 26px;
+      margin-left: 350px;
+
+
+
+    }
+    .basketdiv{
+      margin-top: 10px;
+      height: auto;
+      width: 900px;
+      background-color: #1DDC74;
+      text-align: center;
+      font-size: 26px;
+      outline-style: outset;
+      margin-left: 350px;
+
+    }
+
+    .basketcontent{
+      text-align: center;
+      width: 900px;
+      height: 50px;
+      background-color: #86bbdb;
+      outline-style: outset;
+      font-size: 26px;
+      margin-top: 5px;
+
+    }
+    
+</style>
+  <body >
+<div class="div-2">
+  <form method="post" action="{{url_for("swichtologin")}}">
+    <input class="button-to-login" name="button-to-login" type="submit" action="{{url_for("swichtologin")}}" value="Log In">
+  </form>
+  <form method="post" action="{{url_for("logout")}}">
+    <input class="button-to-basket" name="button-to-basket" type="submit" value="Home" action="{{url_for("logout")}}">
+  </form>
+</div>
+<br><br><br><br><br>
+<label style="margin-left: 47%; margin-top: 350px; font-size: 40px;"><strong>Basket</strong></label>
+
+<div class="basketlabels">
+
+  <label">Name</label>
+  <label style="margin-left: 30%;">Quantity</label>
+  <label style="margin-left: 13%;">Price</label>
+  <label style="margin-left: 15%;">Total</label>
+</div>
+<div class="basketdiv">
+  {%for i in range(len):%}
+
+  <div class="basketcontent">
+    <form method="post" action="{{url_for("remove_product")}}">
+      <input type="hidden" name="toynamehid" value="{{toy_catalogue_basket[i]}}">
+
+      <label style="position: absolute; left: 360px;">{{toy_catalogue_basket[i]}}</label>
+      <label style="position: absolute; left: 740px;">{{toy_quantity_basket[i]}}</label>
+      <label style="position: absolute; left: 925px;">${{toy_price_basket[i]}}</label>
+      <label style="position: absolute; left: 1110px;">${{toy_quantity_basket[i] * toy_price_basket[i]}}</label>
+      <input ac type="submit" value="X" action="{{url_for("remove_product")}}" style="position: absolute; height: 20px; width: 20px; left: 1200px;"></input>
+    </form>
+  </div>
+
+  {%endfor%}
+</div>
+
+<br>
+<label style="margin-left: 1100px; margin-top: 350px; font-size: 30px;"><strong>${{totalsum}}</strong></label>
+<input type="submit" value="Pay" style="height: 40px; width: 70px; margin-left: 2%;"></input>
+
+  </body>
+</html>

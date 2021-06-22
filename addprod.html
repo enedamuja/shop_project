@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Product</title>
+	<style>
+		.managediv{
+			margin-top: 50px;
+			height: 600px;
+			width: 400px;
+			background-color: #86bbdb;
+			text-align: left;
+			font-size: 30px;
+			outline-style: outset;
+
+		}
+
+		.genrepdiv{
+			height: 600px;
+			width: screen.width;
+			background-color: #aad5f0;
+		}
+
+		.tablediv {
+			width: 950px;
+			height: 600px;
+			outline-style: outset;
+			margin-top: -600px;
+			float: left;
+			margin-left: 600px;
+			overflow: scroll;
+
+		}
+
+		.navbar {
+		  overflow: hidden;
+		  background-color: #333;
+		}
+
+		/* Navigation links */
+		.navbar a {
+		  float: left;
+		  font-size: 16px;
+		  color: white;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		}
+		
+		.subnav {
+		  float: left;
+		  overflow: hidden;
+		}
+
+		/* Subnav button */
+		.subnav .subnavbtn {
+		  font-size: 16px;
+		  border: none;
+		  outline: none;
+		  color: white;
+		  padding: 14px 16px;
+		  background-color: inherit;
+		  font-family: inherit;
+		  margin: 0;
+		}
+
+		/* Add a red background color to navigation links on hover */
+		.navbar a:hover, .subnav:hover .subnavbtn {
+		  background-color: red;
+		}
+
+		/* Style the subnav content - positioned absolute */
+		.subnav-content {
+		  display: none;
+		  position: absolute;
+		  left: 0;
+		  background-color: red;
+		  width: 100%;
+		  z-index: 1;
+		}
+
+		/* Style the subnav links */
+		.subnav-content a {
+		  float: left;
+		  color: white;
+		  text-decoration: none;
+		}
+
+		/* Add a grey background color on hover */
+		.subnav-content a:hover {
+		  background-color: #eee;
+		  color: black;
+		}
+
+		table, th, td {
+		  border: 1px solid black;
+		  border-collapse: collapse;
+		}
+		th, td {
+		  padding: 5px;
+		  text-align: left;    
+		}
+
+		/* When you move the mouse over the subnav container, open the subnav content */
+		.subnav:hover .subnav-content {
+  display: block;
+}
+	</style>
+</head>
+<body>
+	<div class="navbar">
+	  	<div class="subnav">
+		    <button class="subnavbtn">Products <i class="fa fa-caret-down"></i></button>
+		    <div class="subnav-content">
+		      	<a href="{{url_for("swaptoaddprod")}}">Add Products</a>
+		      	<a href="{{url_for("swaptodelprod")}}">Delete Products</a>
+		      	<a href="{{url_for("swaptoeditprod")}}">Edit Products</a>
+		    </div>
+	  	</div>
+	  	<a href="{{url_for("home")}}">Log Out</a>
+	</div>
+	<div class="genrepdiv">
+		<div class="managediv">
+			<form action="{{url_for("insert_prod")}}" method="POST" class="center" enctype=multipart/form-data>
+			  <label for="toy_ID">Toy ID:</label>
+			  <input style="float: right; height: 30px;" type="text" id="toy_ID" name="toy_ID" placeholder="Toy ID"><br><br>
+			  <label for="toy_catalogue">Toy Name:</label>
+			  <input style="float: right; height: 30px;" id="toy_catalogue" name="toy_catalogue" placeholder="Toy Name"><br><br>
+			  <label for="toy_category">Toy Category:</label>
+			  <input style="float: right; height: 30px;" type="text" id="toy_category" name="toy_category" placeholder="Toy Category"><br><br>
+			  <label for="toy_price">Toy Price:</label>
+			  <input style="float: right; height: 30px;" type="text" id="toy_price" name="toy_price" placeholder="Toy Price"><br><br>
+			  <label for="toy_quantity">Toy Quantity:</label>
+			  <input style="float: right; height: 30px;" type="text" id="toy_quantity" name="toy_quantity" placeholder="Toy Quantity"><br><br>
+			  <label for="toy_image">Toy Image:</label>
+			  <input style="float: right; height: 30px;" type="text" id="toy_image" placeholder="Toy Image Link" name="toy_image"><br><br>
+			  <label for="toy_description">First Discription:</label>
+			  <input style="float: right; height: 30px;" type="text" id="toy_description" name="toy_description" placeholder="First Discription"><br><br><br>
+			  <input type="submit" style="height: 50px;margin-left: 150px;" title="Add Product"></input>
+		</div>
+
+		<div class="tablediv">
+			<table style="width:100%">
+			  <tr style="text-align: center;">
+			    <th>Toy ID</th>
+			    <th>Toy Name</th>
+			    <th>Toy Category</th>
+			    <th>Toy Price</th>
+			    <th>Toy Quantity</th>
+			    <th>Toy Discription</th>
+			  </tr>
+			  {%for i in range(len):%}
+			  <tr>
+			    <td>{{toy_ID[i]}}</td>
+			    <td>{{toy_catalogue[i]}}</td>
+			    <td>{{toy_category[i]}}</td>
+			    <td>{{toy_price[i]}}</td>
+			    <td>{{toy_quantity[i]}}</td>
+			    <td>{{toy_description[i]}}</td>
+			  </tr>
+			  {%endfor%}
+			</table>
+		</div>
+	</div>
+</body>
+</html>
